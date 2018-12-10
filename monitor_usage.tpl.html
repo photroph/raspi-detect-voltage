@@ -1,0 +1,55 @@
+<html lang="ja">
+<head>
+    <title>usage checker</title>
+    <meta http-equiv="Content-Type" charset="utf-8" content="text/html">
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+    body { background-color: #0080FF; }
+    #wrapper {
+      width: 900px;
+      margin: 0 auto;
+      padding: 50px;
+      background-color: #fff;
+      text-align: center;
+    }
+    .status {
+      font-weight: bold;
+    }
+    .used {
+      color: #e74c3c;
+      font-size: 150%;
+    }
+    table {
+      margin: 0 auto;
+      border: 1px solid #e6e6e6;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    tr:nth-of-type(2n) {
+      background-color: #e6e6e6;
+    }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <h1>usage checker</h1>
+    {% if using %}
+    <p class="status used">now using</p>
+    {% else %}
+    <p class="status">not used now</p>
+    {% endif %}
+    <p>detail: detected voltage = {{ voltage }} mV</p>
+    <hr>
+    <h2>usage history</h2>
+    <p>(record added by accessing here while using microwave)</p>
+    <table>
+        <tr><th>detected voltage [mV]</th><th>time</th></tr>
+        {% for item in history %}
+        <tr><td>{{ item[0] }}</td><td>{{ item[1] }}</td></tr>
+        {% endfor %}
+    </table>
+<div>
+
+</body>
+</html>
